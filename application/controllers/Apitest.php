@@ -13,9 +13,14 @@ class ApiTest extends MY_Controller
      * @param mixed
      * @return mixed
      */
-    public function test1()
+    public function test1($str, $int, $arr)
     {
-        return $this->ip(func_get_args());
+        $array = array(
+            'param1' => $str,
+            'param2' => $int,
+            'param3' => $arr
+        );
+        return $this->json_response($array);
     }
 
     /**
@@ -25,7 +30,7 @@ class ApiTest extends MY_Controller
      */
     public function test2()
     {
-        return $this->ip(func_get_args());
+        return $this->json_response($this->ip(func_get_args()));
     }
 
     /**
