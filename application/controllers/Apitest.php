@@ -6,18 +6,8 @@
  * Date: 16-2-24
  * Time: 上午10:48
  */
-class ApiTest extends CI_Controller
+class ApiTest extends MY_Controller
 {
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-
-    public function index()
-    {
-
-    }
     /**
      * YAR service test API1
      * @param mixed
@@ -61,7 +51,3 @@ class ApiTest extends CI_Controller
         return $param;
     }
 }
-
-//$obj = new ApiTest();
-//$yar = new Yar_Server($obj);
-//$yar->handle();
