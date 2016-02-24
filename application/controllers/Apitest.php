@@ -1,15 +1,16 @@
 <?php
-
+use iface\base\Controller;
+use service\base\service;
 /**
- * Created by PhpStorm.
+ * 测试api控制器.
  * User: chiang
  * Date: 16-2-24
  * Time: 上午10:48
  */
-class ApiTest extends MY_Controller
+class ApiTest extends MY_Controller implements Controller
 {
     /**
-     * YAR service test API1
+     * 测试 return json
      * @param mixed
      * @return mixed
      */
@@ -24,13 +25,14 @@ class ApiTest extends MY_Controller
     }
 
     /**
-     * YAR service test API2
+     * 测试 service interface
      * @param mixed
      * @return mixed
      */
     public function test2()
     {
-        return $this->json_response($this->ip(func_get_args()));
+        $service = new service();
+        return $service->test();
     }
 
     /**

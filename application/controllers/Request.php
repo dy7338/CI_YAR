@@ -25,7 +25,8 @@ class request extends CI_Controller
             $service = new Yar_Client('http://129.com/CI_YAR/apitest');
         }
 
-        $result = $service->test1('测试', 1024, array('a'=>1,'b'=>2));
-        var_dump(json_decode($result));
+        $result = $service->test2();
+//        $result = $service->test1('测试', 1024, array('a'=>1,'b'=>2));
+        var_dump($result);
     }
 }

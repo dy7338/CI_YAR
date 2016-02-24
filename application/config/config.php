@@ -511,3 +511,27 @@ $config['rewrite_short_tags'] = FALSE;
 | Array:		array('10.0.1.200', '192.168.5.0/24')
 */
 $config['proxy_ips'] = '';
+
+
+/**
+ * namespace autoload
+ * @param string class uri
+ */
+spl_autoload_extensions('.php'); // Only Autoload PHP Files
+
+spl_autoload_register(function($classname) {
+
+    //兼容两种uri分割符 ‘\’ and ‘/’
+    if(strpos($classname, '\\') !== false) {
+        // namespace
+        $classfile = strtolower(str_replace('\\', '/', $classname));
+        if($classname[0] !== '/'){
+            $classfile = APPPATH . $classfile . '.php';
+        }
+        require($classfile);
+    } else if(strpos($classname,'iface') !== false) {
+        $classfile = strtolower(str_replace('\\', '/', $classname));;
+        require(APPPATH . $classfile . '.php');
+    }
+
+});
