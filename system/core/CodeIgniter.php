@@ -465,7 +465,6 @@ if ( ! is_php('5.4'))
 		{
 			$class = $error_class;
 			$method = $error_method;
-
 			$URI->rsegments = array(
 				1 => $class,
 				2 => $method
@@ -497,8 +496,10 @@ if ( ! is_php('5.4'))
 	// Mark a start point so we can benchmark the controller
 	$BM->mark('controller_execution_time_( '.$class.' / '.$method.' )_start');
 
+	//TODO CI整合YAR
 	$CI = new $class();
-
+	$yar = new Yar_Server($CI);
+	$yar->handle();
 /*
  * ------------------------------------------------------
  *  Is there a "post_controller_constructor" hook?

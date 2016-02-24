@@ -13,9 +13,6 @@ class request extends CI_Controller
         parent::__construct();
     }
 
-    function index() {
-
-    }
     /**
      * yar请求服务
      * @return mixed
@@ -23,6 +20,7 @@ class request extends CI_Controller
     public function yar_request()
     {
         $service = new Yar_Client('http://ci.com/apitest');
-        var_dump($service);
+        $result = $service->test1(1, 2, array('1', '2'), 'param');
+        var_dump($result);
     }
 }
