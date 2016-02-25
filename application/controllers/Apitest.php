@@ -1,6 +1,7 @@
 <?php
 use iface\base\Controller;
 use service\base\service;
+use libraries\help\json;
 /**
  * 测试api控制器.
  * User: chiang
@@ -14,14 +15,14 @@ class ApiTest extends MY_Controller implements Controller
      * @param mixed
      * @return mixed
      */
-    public function test1($str, $int, $arr)
+    public function test1($str = '测试参数', $int = 1234, $arr = array(1, 2, 3, array('a' => 1, 'b' => '2')))
     {
         $array = array(
             'param1' => $str,
             'param2' => $int,
             'param3' => $arr
         );
-        return $this->json_response($array);
+        return json::json_response($array);
     }
 
     /**

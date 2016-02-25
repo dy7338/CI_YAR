@@ -9,12 +9,13 @@
 namespace service\base;
 
 use iface\base\iface_service;
+use libraries\help\json;
 
 class service implements iface_service
 {
     public function test()
     {
         // TODO: Implement test() method.
-        return 'service ok!';
+        return json::json_response(array('service ok!'));
     }
 }
