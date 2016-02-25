@@ -496,8 +496,12 @@ if ( ! is_php('5.4'))
 	// Mark a start point so we can benchmark the controller
 	$BM->mark('controller_execution_time_( '.$class.' / '.$method.' )_start');
 
-	//TODO CI整合YAR
 	$CI = new $class();
+
+/**
+ * 框架核心整合YAR服务
+ * @todo 实例化yar对象,并且启动一个http服务
+ */
 	$yar = new Yar_Server($CI);
 	$yar->handle();
 /*
