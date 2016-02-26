@@ -82,16 +82,25 @@ class CI_Cache_memcached extends CI_Driver {
 		// Try to load memcached server info from the config file.
 		$CI =& get_instance();
 		$defaults = $this->_memcache_conf['default'];
-
 		if ($CI->config->load('memcached', TRUE, TRUE))
 		{
 			if (is_array($CI->config->config['memcached']))
 			{
 				$this->_memcache_conf = array();
-
-				foreach ($CI->config->config['memcached'] as $name => $conf)
+				//TODO 不同memcached客户端,加载不同配置
+				if(class_exists('Memcached', FALSE))
 				{
-					$this->_memcache_conf[$name] = $conf;
+					foreach ($CI->config->config['memcached'] as $name => $conf)
+					{
+						$this->_memcache_conf[$name] = $conf;
+					}
+				}
+				else
+				{
+					foreach ($CI->config->config['memcached']['memd'] as $name => $conf)
+					{
+						$this->_memcache_conf[$name] = $conf;
+					}
 				}
 			}
 		}
@@ -118,21 +127,23 @@ class CI_Cache_memcached extends CI_Driver {
 			if (get_class($this->_memcached) === 'Memcache')
 			{
 				// Third parameter is persistance and defaults to TRUE.
-				$this->_memcached->addServer(
-					$cache_server['hostname'],
-					$cache_server['port'],
-					TRUE,
-					$cache_server['weight']
-				);
+				if(!empty($cache_server['hostname']))
+				{
+					$this->_memcached->addServer(
+						$cache_server['hostname'],
+						$cache_server['port'],
+						TRUE,
+						$cache_server['weight']
+					);
+				}
 			}
-			else
-			{
-				$this->_memcached->addServer(
-					$cache_server['hostname'],
-					$cache_server['port'],
-					$cache_server['weight']
-				);
-			}
+		}
+		//TODO memcached使用addServer增加节点
+		if(get_class($this->_memcached) === 'Memcached')
+		{
+			$this->_memcached->addServers(
+				$this->_memcache_conf['memd']
+			);
 		}
 	}
 
@@ -285,5 +296,18 @@ class CI_Cache_memcached extends CI_Driver {
 	public function is_supported()
 	{
 		return (extension_loaded('memcached') OR extension_loaded('memcache'));
+	}
+
+	// ------------------------------------------------------------------------
+
+	/**
+	 * 获取一个key所映射的服务器信息
+	 *
+	 * @param mixed key
+	 * @return mixed
+	 */
+	public function getServerByKey ($id)
+	{
+		return $this->_memcached->getServerByKey($id);
 	}
 }
