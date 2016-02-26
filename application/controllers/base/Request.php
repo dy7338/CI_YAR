@@ -27,11 +27,12 @@ class request extends CI_Controller
         }
 
         $result = $service->test1();
-        $this->cache->memcached->save('foo', $result);
-        var_dump($this->cache->memcached->getServerByKey('foo'));
+        $this->cache->memcached->addByKey('61', 'fooa', $result);
+        var_dump($this->cache->memcached->getServerByKey('fooa'));
+        var_dump($this->cache->memcached->getByKey('61', 'fooa'));
 //        echo $this->cache->memcached->get('foo');
 //        $this->cache->memcached->delete('foo');
 //        $result = $service->test1('测试', 1024, array('a'=>1,'b'=>2));
-        print_r(json_decode($result));
+//        print_r(json_decode($result));
     }
 }

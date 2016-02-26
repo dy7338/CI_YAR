@@ -303,11 +303,35 @@ class CI_Cache_memcached extends CI_Driver {
 	/**
 	 * 获取一个key所映射的服务器信息
 	 *
-	 * @param mixed key
+	 * @param mixed $key
 	 * @return mixed
 	 */
-	public function getServerByKey ($id)
+	public function getServerByKey ($key)
 	{
-		return $this->_memcached->getServerByKey($id);
+		return $this->_memcached->getServerByKey($key);
+	}
+
+	/**
+	 * 在指定服务器上的一个新的key下增加一个元素
+	 * @param string $server_key		本键名用于识别储存和读取值的服务器
+	 * @param string $key				用于存储值的键名
+	 * @param mixed  $value				存储的值
+	 * @param int	 $time				到期时间，默认为 0
+	 * @return	boolean
+	 */
+	public function addByKey(string $server_key, string $key, $value, int $time = 0)
+	{
+		return $this->_memcached->addByKey($server_key, $key, $value, $time);
+	}
+
+	/**
+	 * 从特定的服务器检索元素
+	 * @param string $server_key		本键名用于识别储存和读取值的服务器
+	 * @param string $key				用于读取值的键名
+	 * @return mixed
+	 */
+	public function getByKey($server_key, $key)
+	{
+		return $this->_memcached->getByKey($server_key, $key);
 	}
 }
