@@ -35,4 +35,23 @@ class request extends CI_Controller
 //        $result = $service->test1('测试', 1024, array('a'=>1,'b'=>2));
 //        print_r(json_decode($result));
     }
+
+    /**
+     * 测试memcache部署设置
+     */
+    public function set_mem($flag) {
+        $start = microtime(true);
+        if($flag == 1){
+            for($i = 0; $i < 10000; $i++) {
+                $this->cache->memcached->save("{$i}", array('测试',$i), 10000, TRUE);
+            }
+            echo "写入{$i}条数据耗时" . (microtime(true) - $start) . '秒';
+        }else{
+            //读取
+            for($i = 0; $i < 10000; $i++) {
+                $this->cache->memcached->get("{$i}");
+            }
+            echo "读取{$i}条数据耗时" . (microtime(true) - $start) . '秒';
+        }
+    }
 }
