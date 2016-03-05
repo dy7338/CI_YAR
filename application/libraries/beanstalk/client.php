@@ -8,7 +8,7 @@
  * Redistributions of files must retain the above copyright notice.
  */
 
-namespace Beanstalk;
+namespace libraries\beanstalk;
 
 use RuntimeException;
 

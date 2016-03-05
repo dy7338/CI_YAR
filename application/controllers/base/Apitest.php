@@ -3,7 +3,7 @@ use iface\base\Controller;
 use service\base\service;
 use libraries\help\json;
 /**
- * 测试api控制器.
+ * 测试yar远程调用api，控制器.
  * User: chiang
  * Date: 16-2-24
  * Time: 上午10:48

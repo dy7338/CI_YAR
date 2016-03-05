@@ -55,6 +55,14 @@
  */
 	define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
 
+/**
+ * yar服务开关，默认关闭
+ * 0: 关闭
+ * 1:　开启
+ */
+
+define('YAR_SERVER', 0);
+
 /*
  *---------------------------------------------------------------
  * ERROR REPORTING

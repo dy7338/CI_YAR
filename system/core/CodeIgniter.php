@@ -502,8 +502,12 @@ if ( ! is_php('5.4'))
  * 框架核心整合YAR服务
  * @todo 实例化yar对象,并且启动一个http服务
  */
-	$yar = new Yar_Server($CI);
-	$yar->handle();
+	if(YAR_SERVER)
+	{
+		$yar = new Yar_Server($CI);
+		$yar->handle();
+	}
+
 /*
  * ------------------------------------------------------
  *  Is there a "post_controller_constructor" hook?
