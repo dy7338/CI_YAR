@@ -1,4 +1,5 @@
 <?php
+namespace libraries\Xmpphp;
 /**
  * XMPPHP: The PHP XMPP Library
  * Copyright (C) 2008  Nathanael C. Fritz
