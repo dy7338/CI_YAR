@@ -1,4 +1,7 @@
 <?php
+namespace libraries\xmpphp;
+
+use Exception;
 /**
  * XMPPHP: The PHP XMPP Library
  * Copyright (C) 2008  Nathanael C. Fritz
@@ -27,13 +30,13 @@
  */
 
 /** XMPPHP_Exception */
-require_once dirname(__FILE__) . '/Exception.php';
+//require_once dirname(__FILE__) . '/Exception.php';
 
 /** XMPPHP_XMLObj */
-require_once dirname(__FILE__) . '/XMLObj.php';
+//require_once dirname(__FILE__) . '/XMLObj.php';
 
 /** XMPPHP_Log */
-require_once dirname(__FILE__) . '/Log.php';
+//require_once dirname(__FILE__) . '/Log.php';
 
 /**
  * XMPPHP XML Stream
@@ -46,7 +49,7 @@ require_once dirname(__FILE__) . '/Log.php';
  * @copyright  2008 Nathanael C. Fritz
  * @version	$Id$
  */
-class XMPPHP_XMLStream {
+class Xmp_stream {
 	/**
 	 * @var resource
 	 */
@@ -183,7 +186,7 @@ class XMPPHP_XMLStream {
 		$this->host = $host;
 		$this->port = $port;
 		$this->setupParser();
-		$this->log = new XMPPHP_Log($printlog, $loglevel);
+		$this->log = new Xmp_log($printlog, $loglevel);
 	}
 
 	/**
@@ -310,7 +313,7 @@ class XMPPHP_XMLStream {
 			try {
 				$this->socket = @stream_socket_client("$conntype://{$this->host}:{$this->port}", $errno, $errstr, $timeout, $conflag);
 			} catch (Exception $e) {
-				throw new XMPPHP_Exception($e->getMessage());
+				throw new Xmp_exception($e->getMessage());
 			}
 			if(!$this->socket) {
 				$this->log->log("Could not connect.",  XMPPHP_Log::LEVEL_ERROR);
@@ -324,7 +327,7 @@ class XMPPHP_XMLStream {
 			stream_set_blocking($this->socket, 1);
 			if($sendinit) $this->send($this->stream_start);
 		} else {
-			throw new XMPPHP_Exception("Could not connect before timeout.");
+			throw new Xmp_exception("Could not connect before timeout.");
 		}
 	}
 
@@ -522,7 +525,7 @@ class XMPPHP_XMLStream {
 			$ns = $this->ns_map[$name[0]];
 			$name = $name[1];
 		}
-		$obj = new XMPPHP_XMLObj($name, $ns, $attr);
+		$obj = new Xmp_xmlobj($name, $ns, $attr);
 		if($this->xml_depth > 1) {
 			$this->xmlobj[$this->xml_depth - 1]->subs[] = $obj;
 		}

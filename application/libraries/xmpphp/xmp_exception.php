@@ -1,4 +1,7 @@
 <?php
+namespace libraries\xmpphp;
+
+use Exception;
 /**
  * XMPPHP: The PHP XMPP Library
  * Copyright (C) 2008  Nathanael C. Fritz
@@ -37,5 +40,5 @@
  * @copyright  2008 Nathanael C. Fritz
  * @version    $Id$
  */
-class XMPPHP_Exception extends Exception {
+class Xmp_exception extends Exception {
 }

@@ -1,5 +1,7 @@
 <?php
-namespace libraries\Xmpphp;
+namespace libraries\xmpphp;
+
+use Exception;
 /**
  * XMPPHP: The PHP XMPP Library
  * Copyright (C) 2008  Nathanael C. Fritz
@@ -28,8 +30,8 @@ namespace libraries\Xmpphp;
  */
 
 /** XMPPHP_XMLStream */
-require_once dirname(__FILE__) . "/XMLStream.php";
-require_once dirname(__FILE__) . "/Roster.php";
+//require_once dirname(__FILE__) . "/XMLStream.php";
+//require_once dirname(__FILE__) . "/Roster.php";
 
 /**
  * XMPPHP Main Class
@@ -42,7 +44,7 @@ require_once dirname(__FILE__) . "/Roster.php";
  * @copyright  2008 Nathanael C. Fritz
  * @version	$Id$
  */
-class XMPPHP_XMPP extends XMPPHP_XMLStream {
+class Xmpp extends xmp_stream {
 	/**
 	 * @var string
 	 */
@@ -308,7 +310,7 @@ class XMPPHP_XMPP extends XMPPHP_XMLStream {
 		$this->log->log("Auth failed!",  XMPPHP_Log::LEVEL_ERROR);
 		$this->disconnect();
 		
-		throw new XMPPHP_Exception('Auth failed!');
+		throw new Exception('Auth failed!');
 	}
 
 	/**

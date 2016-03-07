@@ -1,4 +1,7 @@
 <?php
+namespace libraries\xmpphp;
+
+use SimpleXMLElement;
 /**
  * XMPPHP: The PHP XMPP Library
  * Copyright (C) 2008  Nathanael C. Fritz
@@ -27,7 +30,8 @@
  */
 
 /** XMPPHP_XMLStream */
-require_once dirname(__FILE__) . "/XMPP.php";
+//require_once dirname(__FILE__) . "/xmpp.php";
+
 
 /**
  * XMPPHP Main Class
@@ -40,7 +44,7 @@ require_once dirname(__FILE__) . "/XMPP.php";
  * @copyright  2008 Nathanael C. Fritz
  * @version	$Id$
  */
-class XMPPHP_BOSH extends XMPPHP_XMPP {
+class Bosh extends xmpp {
 
 		protected $rid;
 		protected $sid;

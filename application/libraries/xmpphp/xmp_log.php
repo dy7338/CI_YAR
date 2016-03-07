@@ -1,4 +1,5 @@
 <?php
+namespace libraries\xmpphp;
 /**
  * XMPPHP: The PHP XMPP Library
  * Copyright (C) 2008  Nathanael C. Fritz
@@ -36,7 +37,7 @@
  * @copyright  2008 Nathanael C. Fritz
  * @version	$Id$
  */
-class XMPPHP_Log {
+class xmp_log {
 	
 	const LEVEL_ERROR   = 0;
 	const LEVEL_WARNING = 1;

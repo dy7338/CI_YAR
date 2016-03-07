@@ -1,4 +1,5 @@
 <?php
+namespace libraries\xmpphp;
 /**
  * XMPPHP: The PHP XMPP Library
  * Copyright (C) 2008  Nathanael C. Fritz
@@ -33,9 +34,9 @@
  * The old Jabber protocol wasn't standardized, so use at your own risk.
  *
  */
-require_once "XMPP.php";
+//require_once "XMPP.php";
 
-	class XMPPHP_XMPPOld extends XMPPHP_XMPP {
+	class Xmpp_old extends xmpp {
 		/**
 		 *
 		 * @var string
@@ -102,7 +103,7 @@ require_once "XMPP.php";
 			if($xml->attrs['type'] != 'result') {
 				$this->log->log("Auth failed!",  XMPPHP_Log::LEVEL_ERROR);
 				$this->disconnect();
-				throw new XMPPHP_Exception('Auth failed!');
+				throw new Xmp_exception('Auth failed!');
 			} else {
 				$this->log->log("Session started");
 				$this->event('session_start');
